@@ -33,7 +33,7 @@ poetry shell
 
 Before being able to run the code, you need to either have an OPENAI API KEY or a HUGGINGFACE API TOKEN.
 
-You can either add these in your environment variables, using the names OPENAI_KEY or HUGGINFACEHUB_API_TOKEN
+You can either add these in your environment variables, using the names `OPENAI_KEY` or `HUGGINFACEHUB_API_TOKEN`
 or you can put them in config.py in the designated place :
 
 ```
@@ -41,7 +41,7 @@ OPENAI_KEY = os.getenv("OPENAI_KEY", "your key")
 HUGGINFACEHUB_API_TOKEN = os.getenv("HUGGINFACEHUB_API_TOKEN", "your token") 
 ```
 
-For each provider, you need to change LLM_PROVIDER in config.py accordinly 
+For each provider, you need to change `LLM_PROVIDER` in `config.py` accordinly 
 ```
 providers = ["openai","huggingface"]
 LLM_PROVIDER = "your provider from the list"
@@ -53,7 +53,7 @@ in a terminal where the poetry env is activated, make sure that you are in the r
 ```
 streamlit run  .\chatbot\front.py
 ```
-to stop the app you need to press ctrl+c in the used terminal
+to stop the app you need to press `ctrl+c` in the used terminal
 
 ### run a console chatbot
 
@@ -61,13 +61,13 @@ in a terminal where the poetry env is activated, make sure that you are in the r
 ```
 python  .\chatbot\chatbot.py
 ```
-to stop the app you can either input q or quit.
+to stop the app you can either input `q` or `quit`.
 
 ### Update the vector database 
 
 This project uses a Chroma vector database that includes relevant knowledge from Madkudu's support website. the vector database is in the directory vector_db
 
-the script create_vector_database.py takes all the pdf files in the documents directory, and recreates a vector database using the knowledge in these documents.
+the script `create_vector_database.py` takes all the pdf files in the documents directory, and recreates a vector database using the knowledge in these documents.
 in order to run it, make sure you placed to pdf files you want to be included in documents directory.
 
 in a terminal where the poetry env is activated, make sure that you are in the root directory of the project, some directory names variables won't work otherwise, then :

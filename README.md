@@ -1,6 +1,6 @@
 # Supoort Chatbot
 
-This is a python project for a support chatbot, that uses knowledge from severel pages of Madkudu's support website : https://support.madkudu.com/hc/en-us
+This is a python project for a support chatbot, written mainly using Langchain and Streamlit.
 
 ## How Does it work :
 
@@ -16,7 +16,13 @@ In our context, the RAG apprach can enable us to create a support chatbot that c
 
 ### The vector store :
 
-We use a static vector store, created using the script create_vector_store, where chunks are stored as Embeddings (vectors), for that purpose we use HuggingFace embeddings, which are easy to access and use.
+We use a static Chroma vector store (stored in `vector_db` directory), created using the script `create_vector_store.py`, where chunks are stored as Embeddings (vectors). For that purpose we use HuggingFace embeddings, which are easy to access and use. vector stores enable us to use similarity search to find relevant knowledge to our prompts.
+
+We indexed several pdf files in the `documents` directory using a langchain integration of BeautifulSoup and Unstructured libraries.
+
+### The prompting :
+
+We use a system prompt that contains instructions for the model and 
 
 ## How to run the files
 

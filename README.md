@@ -14,15 +14,38 @@ Retrieval augmented generation, or RAG, is an architectural approach that can im
 
 In our context, the RAG apprach can enable us to create a support chatbot that can answer the user accurately using Madkudu's knowledge and documentation in the [support website](https://support.madkudu.com/hc/en-us)
 
-### The vector store :
+### The vector Database :
 
-We use a static Chroma vector store (stored in `vector_db` directory), created using the script `create_vector_store.py`, where chunks are stored as Embeddings (vectors). For that purpose we use HuggingFace embeddings, which are easy to access and use. vector stores enable us to use similarity search to find relevant knowledge to our prompts.
+![image](https://github.com/nizar139/support-chatbot/assets/93913464/5dc21c5a-d579-47d2-bc05-379402a90b13)
+
+
+We use a Chroma vector database (stored in `vector_db` directory), created using the script `create_vector_store.py`, where chunks are stored as Embeddings (vectors). For that purpose we use HuggingFace embeddings, which are easy to access and use. vector databases enable us to use similarity search to find relevant knowledge to our prompts.
 
 We indexed several pdf files in the `documents` directory using a langchain integration of BeautifulSoup and Unstructured libraries.
 
 ### The prompting :
 
-We use a system prompt that contains instructions for the model and 
+In order to retrieve the relevant context, we use the llm to generate a good retrieval prompt which summerize what knowledge is needed depending on the message history. We use this retrieval prompt in a semantic search to find the three closest context pieces from the vector database.
+
+the main prompt is divised in two parts :
+- A system prompt that describe the use scenario and provides the necessay context.
+- The conversation history.
+
+### The LLM :
+
+We can use either Mistral 7B Instruct or GPT3.5, I recommend using Mistral 7B since the API access is free and some pieces of the code are more optimized towards it.
+We can change the used LLM as long as it is supported by Langchain.
+
+### Future Improvments :
+
+There are several ideas to improve this chatbot :
+
+- Include more knowledge from the Support Website. (we are using for know a few pages that were downloaded as PDF files)
+- Updgrade the indexing process.
+- Use a more powerful LLM/ finetune the LLM.
+- Add a feedback loop for the user to evaluate the quality of the responses.
+- Allow the used to view/modify the retrieved context.
+- Ensure the code is asynchronious.
 
 ## How to run the files
 
@@ -37,7 +60,7 @@ poetry install
 poetry shell
 ```
 
-Before being able to run the code, you need to either have an OPENAI API KEY or a HUGGINGFACE API TOKEN.
+Before being able to run the code, you need to either have an [OPENAI API KEY](https://platform.openai.com/api-keys) or a [HUGGINGFACE API TOKEN](https://huggingface.co/settings/tokens).
 
 You can either add these in your environment variables, using the names `OPENAI_KEY` or `HUGGINFACEHUB_API_TOKEN`
 or you can put them in config.py in the designated place :

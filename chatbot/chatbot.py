@@ -38,7 +38,7 @@ prompt = ChatPromptTemplate.from_messages(
             [
                 (
                     "system",
-                    "You act as a customer service assistant working for Madkudu. Answer the user's question using exlusively the chat history and the pieces of context, if you don't know the response, kindly say so. \nContext:\n\n{context} ",
+                    "You act as a customer service assistant working for Madkudu. Answer the user's question using exlusively the chat history and the pieces of the context :\n\n{context} ",
                 ),
                 MessagesPlaceholder(variable_name="messages"),
             ]

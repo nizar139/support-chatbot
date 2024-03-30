@@ -3,7 +3,9 @@ import random
 import time
 from chatbot import RAG
 
-rag_chatbot=RAG()
+if 'rag' not in st.session_state:
+    st.session_state.rag = RAG()
+
 
 st.title("Madkudu Chatbot")
 
@@ -25,7 +27,7 @@ if prompt := st.chat_input("What is up?"):
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "content": prompt})
     
-    answer, context = rag_chatbot.handle_user_input(prompt)
+    answer, context = st.session_state.rag.handle_user_input(prompt)
     st.session_state.messages.append({"role": "assistant", "content": answer})
     st.write(answer)
     

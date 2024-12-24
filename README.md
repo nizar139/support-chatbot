@@ -1,4 +1,4 @@
-# Supoort Chatbot
+# Support Chatbot
 
 This is a python project for a support chatbot, written mainly using Langchain and Streamlit.
 
